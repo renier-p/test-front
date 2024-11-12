@@ -9,7 +9,7 @@
 }
 
 .autocomplete-input {
-    width: 100%;
+    width: 60%;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -22,13 +22,12 @@
     padding: 0;
     position: absolute;
     top: 65px;
-    width: 100%;
+    width: 60%;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     z-index: 10;
     max-height: 200px;
     overflow-y: auto;
-    width: calc(100% - 45px);
 }
 
 .autocomplete-item {
@@ -53,7 +52,6 @@
     padding: 10px;
 }
 
-/* Estilo de las 3 primeras coincidencias */
 .three-matches {
     display: flex;
     flex-direction: column;
@@ -72,8 +70,9 @@
 }
 
 .pokemon-mini-img {
-    width: 60px;
-    height: 60px;
+    width: 200px;
+    height: 200px;
+    filter: drop-shadow(1px 1px 10px black);
 }
 
 .pokemon-image {
@@ -82,9 +81,12 @@
 }
 
 .pokemon-img {
-    width: 150px;
-    height: 150px;
+    width: 220px;
+    height: 220px;
     object-fit: contain;
     border-radius: 8px;
     border: 1px solid #ccc;
+    filter: drop-shadow(1px 1px 10px black);
+
+    
 }

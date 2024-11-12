@@ -13,6 +13,10 @@ const AutoComplete: React.FC<AutoCompleteProps> = ({ apiUrl }) => {
   const [error, setError] = useState<string>("");
   const [firstThreeMatches, setFirstThreeMatches] = useState<any[]>([]);
 
+  const capitalize = (text: string) => {
+    return text.charAt(0).toUpperCase() + text.slice(1);
+  };
+
   const filterData = useCallback(
     async (query: string) => {
       if (!query) {
@@ -25,7 +29,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = ({ apiUrl }) => {
       setError("");
 
       try {
-        const response = await fetch(`${apiUrl}?limit=50&offset=0`);
+        const response = await fetch(`${apiUrl}?limit=800&offset=0`);
         const data = await response.json();
 
         const results = data.results.filter((pokemon: { name: string }) =>
@@ -61,8 +65,8 @@ const AutoComplete: React.FC<AutoCompleteProps> = ({ apiUrl }) => {
   }, [query, filterData]);
 
   const highlightText = (text: string) => {
-    if (!query) return text;
-    const parts = text.split(new RegExp(`(${query})`, "gi"));
+    if (!query) return capitalize(text);
+    const parts = capitalize(text).split(new RegExp(`(${query})`, "gi"));
     return parts.map((part, index) =>
       part.toLowerCase() === query.toLowerCase() ? (
         <span key={index} style={{ fontWeight: "bold", color: "red" }}>
@@ -114,7 +118,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = ({ apiUrl }) => {
         >
           {firstThreeMatches.length > 0 && (
             <div className="three-matches">
-              <h3>Top 3 Matches:</h3>
+              <h3>Top Matches:</h3>
               <div className="matches-container">
                 {firstThreeMatches.map((item, index) => (
                   <div
@@ -190,7 +194,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = ({ apiUrl }) => {
         >
           {selectedPokemon && (
             <div className="pokemon-image">
-              <h2>{selectedPokemon.name}</h2>
+              <h2>{capitalize(selectedPokemon.name)}</h2>
               <img
                 src={selectedPokemon.sprites.front_default}
                 alt={selectedPokemon.name}

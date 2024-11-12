@@ -1,6 +1,5 @@
 import "./App.css";
 import AutoComplete from "./components/AutoComplete";
-import { mockData } from "./data/mockData";
 
 function App() {
   return (
